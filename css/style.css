@@ -512,16 +512,6 @@ body {
     transform: translateY(40px);
     animation: revealSection 1s ease forwards;
 }
-.card-price{
-    position: absolute;
-    bottom: 5px;
-    left: 15px;
-    color: #caa343;
-    font-size: larger;
-    background: rgba(1, 15, 2, 0.5);
-    padding: 6px 12px;
-    border-radius: 5px;
-}
 
 /* Delay animation for stagger effect */
 .gallery-item:nth-child(1) { animation-delay: 0.1s; }
@@ -561,6 +551,17 @@ body {
 
 .gallery-item:hover::after {
     border-color: #d4af37;
+}
+
+.card-price{
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    color: #caa343;
+    font-size: larger;
+    background: rgba(1, 15, 2, 0.5);
+    padding: 6px 12px;
+    border-radius: 5px;
 }
 
 /* Reveal Animation */
