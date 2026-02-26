@@ -512,6 +512,16 @@ body {
     transform: translateY(40px);
     animation: revealSection 1s ease forwards;
 }
+.gallery-item h3{
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    color: #caa343;
+    font-size: larger;
+    background: rgba(0, 25, 2, 0.5);
+    padding: 6px 12px;
+    border-radius: 5px;
+}
 
 /* Delay animation for stagger effect */
 .gallery-item:nth-child(1) { animation-delay: 0.1s; }
