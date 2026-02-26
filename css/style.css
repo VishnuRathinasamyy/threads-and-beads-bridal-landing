@@ -512,7 +512,7 @@ body {
     transform: translateY(40px);
     animation: revealSection 1s ease forwards;
 }
-.gallery-item h3{
+.card-price{
     position: absolute;
     bottom: 5px;
     left: 15px;
