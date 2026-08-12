@@ -30,162 +30,58 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // FAST LUXURY WEDDING ENTRY
 // ===============================
 
-window.addEventListener("load", function () {
+/* ===============================
+   INTRO — with an 8 second failsafe
+   =============================== */
+(function weddingIntro() {
+  const intro = document.querySelector(".wedding-intro");
+  if (!intro) return;
 
-    const intro = document.querySelector(".wedding-intro");
-    const glow = document.querySelector(".intro-glow");
-    const logo = document.querySelector(".intro-logo");
+  const glow = document.querySelector(".intro-glow");
+  const logo = document.querySelector(".intro-logo");
+  let done = false;
 
-    let tl = gsap.timeline();
+  document.body.classList.add("intro-lock");
 
-    tl.fromTo(glow,
-        { scale: 0, opacity: 1 },
-        { scale: 6, duration: 1.2, ease: "power3.out" }
-    )
+  function hide(instant) {
+    if (done) return;
+    done = true;
+    clearTimeout(failsafe);
+    document.body.classList.remove("intro-lock");
 
-    .to(logo, {
-        opacity: 1,
-        scale: 1.05,
-        duration: 0.8,
-        ease: "power2.out"
-    }, "-=0.8")
-
-    .to(intro, {
-        opacity: 0,
-        duration: 0.6,
-        delay: 0.2,
-        onComplete: function () {
-            intro.style.display = "none";
-        }
+    if (instant || typeof gsap === "undefined") {
+      intro.style.display = "none";
+      return;
+    }
+    gsap.to(intro, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => (intro.style.display = "none")
     });
+  }
 
-});
+  function play() {
+    if (done) return;
 
-// ===============================
-// GSAP PARTICLE BACKGROUND
-// ===============================
+    if (typeof gsap === "undefined") return hide(true);
 
-// const canvas = document.getElementById("particleCanvas");
-// const ctx = canvas.getContext("2d");
+    gsap.timeline({ onComplete: () => hide(false) })
+      .fromTo(glow, { scale: 0, opacity: 1 }, { scale: 6, duration: 1.1, ease: "power3.out" })
+      .to(logo, { opacity: 1, scale: 1.05, duration: 0.7, ease: "power2.out" }, "-=0.75")
+      .to({}, { duration: 0.15 });
+  }
 
-// let particles = [];
-// const particleCount = 80;
+  // hard stop: whatever happens, the overlay is gone by 8 seconds
+  const failsafe = setTimeout(() => hide(true), 8000);
 
-// // Responsive canvas
-// function resizeCanvas() {
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-// }
-// resizeCanvas();
-// window.addEventListener("resize", resizeCanvas);
+  // if the page already finished loading, run now instead of waiting
+  if (document.readyState === "complete") play();
+  else window.addEventListener("load", play);
 
-// // Particle class
-// class Particle {
-//     constructor() {
-//         this.x = Math.random() * canvas.width;
-//         this.y = Math.random() * canvas.height;
-//         this.radius = Math.random() * 2 + 1;
-//         this.opacity = Math.random() * 0.5 + 0.3;
+  // and don't wait more than 2.5s for slow images before starting anyway
+  setTimeout(play, 2500);
+})();
 
-//         this.draw = () => {
-//             ctx.beginPath();
-//             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-//             ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
-//             ctx.fill();
-//         };
-
-//         // GSAP movement animation
-//         gsap.to(this, {
-//             x: "+=" + (Math.random() * 200 - 100),
-//             y: "+=" + (Math.random() * 200 - 100),
-//             duration: Math.random() * 10 + 10,
-//             repeat: -1,
-//             yoyo: true,
-//             ease: "sine.inOut"
-//         });
-//     }
-// }
-
-// // Create particles
-// function initParticles() {
-//     particles = [];
-//     for (let i = 0; i < particleCount; i++) {
-//         particles.push(new Particle());
-//     }
-// }
-// initParticles();
-
-// // Animation loop
-// function animate() {
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-//     particles.forEach(p => p.draw());
-
-//     requestAnimationFrame(animate);
-// }
-// animate();
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-// const canvas = document.getElementById("particleCanvas");
-
-// if (canvas) {
-//   const ctx = canvas.getContext("2d");
-
-//   let particles = [];
-//   const particleCount = 80;
-
-//   function resizeCanvas() {
-//       canvas.width = window.innerWidth;
-//       canvas.height = window.innerHeight;
-//   }
-//   resizeCanvas();
-//   window.addEventListener("resize", resizeCanvas);
-
-//   class Particle {
-//       constructor() {
-//           this.x = Math.random() * canvas.width;
-//           this.y = Math.random() * canvas.height;
-//           this.radius = Math.random() * 2 + 1;
-//           this.opacity = Math.random() * 0.5 + 0.3;
-
-//           this.draw = () => {
-//               ctx.beginPath();
-//               ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-//               ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
-//               ctx.fill();
-//           };
-
-//           gsap.to(this, {
-//               x: "+=" + (Math.random() * 200 - 100),
-//               y: "+=" + (Math.random() * 200 - 100),
-//               duration: Math.random() * 10 + 10,
-//               repeat: -1,
-//               yoyo: true,
-//               ease: "sine.inOut"
-//           });
-//       }
-//   }
-
-//   function initParticles() {
-//       particles = [];
-//       for (let i = 0; i < particleCount; i++) {
-//           particles.push(new Particle());
-//       }
-//   }
-//   initParticles();
-
-//   function animate() {
-//       ctx.clearRect(0, 0, canvas.width, canvas.height);
-//       particles.forEach(p => p.draw());
-//       requestAnimationFrame(animate);
-//   }
-//   animate();
-// }
 
 ////////////////////////////////////////////
 //==============letter typing=============//

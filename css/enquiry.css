@@ -1,0 +1,139 @@
+/* =========================================================================
+   THREADS & BEADS — ENQUIRY POPUP (home page)
+   Load after style.css. Do not load on gallery.html, which has its own.
+   ========================================================================= */
+
+.enq-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9995;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(1, 12, 8, 0.9);
+  overflow-y: auto;
+  font-family: "Poppins", sans-serif;
+}
+.enq-overlay.open { display: flex; }
+
+.enq-box {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 34px 30px 30px;
+  border-radius: 18px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: linear-gradient(150deg, #0f2e23, #011a12);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  animation: enqIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes enqIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+.enq-box::-webkit-scrollbar { width: 6px; }
+.enq-box::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.4); border-radius: 6px; }
+
+.enq-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: transparent;
+  color: #d4af37;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+.enq-close:hover { background: #d4af37; color: #01130d; }
+
+.enq-head { text-align: center; margin-bottom: 22px; }
+.enq-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 25px;
+  color: #fff6d8;
+  margin: 0 0 8px;
+  letter-spacing: 2px;
+}
+.enq-ref {
+  font-size: 12px;
+  color: #a9bcb1;
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+.enq-form .form-group { margin-bottom: 14px; }
+.enq-form .label {
+  display: block;
+  font-size: 12px;
+  color: #b9c8bf;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.enq-form .opt { color: #7f948a; }
+
+.enq-form .enq-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(1, 19, 13, 0.6);
+  color: #f1f4f2;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.enq-form .enq-input:focus { border-color: #d4af37; }
+.enq-form .enq-input::placeholder { color: #7f948a; }
+.enq-form select.enq-input option { background: #0f2e23; color: #f1f4f2; }
+.enq-form textarea.enq-input { resize: vertical; }
+
+.enq-error {
+  min-height: 18px;
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: #ff9d94;
+  text-align: center;
+}
+
+.enq-submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  border: 0;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #d4af37, #f5e6a5, #d4af37);
+  background-size: 200% auto;
+  color: #01130d;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-position 0.5s ease, opacity 0.3s ease;
+}
+.enq-submit:hover { background-position: right center; }
+.enq-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.enq-success { display: none; text-align: center; padding: 26px 6px 10px; }
+.enq-success.show { display: block; }
+.enq-success i { font-size: 46px; color: #d4af37; }
+.enq-success p { margin-top: 14px; color: #dfe6e1; font-size: 14.5px; line-height: 1.7; }
+
+@media (max-width: 768px) {
+  .enq-box { padding: 28px 20px 24px; max-height: 94vh; }
+  .enq-title { font-size: 21px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enq-box { animation: none; }
+}

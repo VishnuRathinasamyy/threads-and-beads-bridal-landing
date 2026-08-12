@@ -1271,6 +1271,100 @@ select.luxury-input option {
 }
 
 
+.footer-cta-row {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  justify-content: center;
+
+  margin-top: 22px;
+
+}
+
+.footer-btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 10px 24px;
+
+  border-radius: 50px;
+
+  font-size: 13px;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition: 0.35s ease;
+
+  white-space: nowrap;
+
+}
+
+.footer-btn-ghost {
+
+  border: 1px solid rgba(212, 175, 55, 0.6);
+
+  color: #d4af37;
+
+  background: transparent;
+
+}
+
+.footer-btn-ghost:hover {
+
+  background: rgba(212, 175, 55, 0.12);
+
+  color: #f5e6a5;
+
+  transform: translateY(-2px);
+
+}
+
+.footer-btn-gold {
+
+  border: 1px solid #d4af37;
+
+  background: linear-gradient(45deg, #d4af37, #f5e6a5, #d4af37);
+
+  background-size: 200% auto;
+
+  color: #0f2e23;
+
+  font-weight: 600;
+
+}
+
+.footer-btn-gold:hover {
+
+  background-position: right center;
+
+  color: #0f2e23;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.28);
+
+}
+
+@media (max-width: 480px) {
+
+  .footer-btn { flex: 1 1 auto; }
+
+}
+
+
+
 
 
 
@@ -1754,4 +1848,58 @@ select.luxury-input option {
         width: 80%;
     }
 
+}
+
+
+
+
+
+
+
+
+/* ---- paired buttons: estimate + gallery ---- */
+.btn-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 18px;
+}
+.btn-pair.center { justify-content: center; }
+
+.gallery-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 30px;
+  border: 1px solid #d4af37;
+  border-radius: 50px;
+  color: #d4af37;
+  background: transparent;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: 0.35s ease;
+}
+.gallery-link-btn i { transition: transform 0.3s ease; }
+.gallery-link-btn:hover {
+  background: #d4af37;
+  color: #01130d;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.25);
+}
+.gallery-link-btn:hover i { transform: translateX(4px); }
+
+/* the button that sits under each 4-image grid */
+.gallery-more-wrap {
+  text-align: center;
+  margin-top: 34px;
+}
+
+@media (max-width: 575px) {
+  .btn-pair { flex-direction: column; align-items: stretch; }
+  .btn-pair .get-us-btn,
+  .btn-pair .gallery-link-btn { width: 100%; justify-content: center; }
 }
