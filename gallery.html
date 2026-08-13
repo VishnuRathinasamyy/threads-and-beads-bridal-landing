@@ -4,21 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bridal Gallery | Custom Lehengas, Blouses & Embroidery | Threads and Beads Coimbatore</title>
-    <meta name="description" content="Browse 129 custom bridal lehengas, designer blouses, kurtis, blazers and hand embroidery works by Threads and Beads, Coimbatore. Made-to-measure fits, stitched to your size." />
+    <meta name="description" content="Browse custom bridal lehengas, designer blouses, kurtis, blazers and hand embroidery works by Threads and Beads, Coimbatore. Made-to-measure fits, stitched to your size." />
     <meta name="keywords" content="bridal gallery Coimbatore, designer blouse hand embroidery, custom bridal lehenga, designer kurti, custom blazer, Threads and Beads" />
     <meta name="author" content="Threads and Beads" />
     <link rel="canonical" href="https://www.threadsnbeads.in/gallery.html" />
     <link rel="icon" href="images/New Threads and Beads logo var2.png" />
 
     <meta property="og:title" content="Bridal Gallery | Threads and Beads Coimbatore" />
-    <meta property="og:description" content="129 hand-embroidered pieces — lehengas, blouses, kurtis and blazers, all made to your measurements." />
+    <meta property="og:description" content="Hand-embroidered lehengas, blouses, kurtis and blazers, all made to your measurements." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.threadsnbeads.in/gallery.html" />
     <meta property="og:image" content="https://www.threadsnbeads.in/images/New Threads and Beads logo var2.png" />
     <meta property="og:site_name" content="Threads and Beads" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Bridal Gallery | Threads and Beads" />
-    <meta name="twitter:description" content="Hand-embroidered bridal couture in perfect made-to-measure fits. Browse the full gallery." />
+    <meta name="twitter:description" content="Hand-embroidered bridal couture in perfect made-to-measure fits." />
     <meta name="twitter:image" content="https://www.threadsnbeads.in/images/New Threads and Beads logo var2.png" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,13 +29,11 @@
   </head>
 
   <body class="gallery-page">
-    <!-- ============ INTRO ============ -->
     <div class="wedding-intro">
       <div class="intro-glow"></div>
       <img src="images/logo.svg" alt="Threads and Beads logo — custom bridal lehengas and blouses in made-to-measure sizes." class="intro-logo" />
     </div>
 
-    <!-- ============ SCROLL PROGRESS ============ -->
     <div class="gold-progress"><span id="goldProgressBar"></span></div>
 
     <!-- ============ TOP BAR ============ -->
@@ -45,7 +43,7 @@
           <i class="bi bi-arrow-left"></i><span>Back to home</span>
         </a>
         <a href="index.html" class="topbar-brand">Threads &amp; Beads</a>
-        <a href="#" class="topbar-cta" data-enquire data-design="General enquiry">Enquire</a>
+        <a href="#" class="topbar-cta" data-enquire>Enquire</a>
       </div>
     </div>
 
@@ -74,30 +72,40 @@
         <p class="grid-count" id="gridCount" aria-live="polite"></p>
         <div class="lux-grid" id="luxGrid"></div>
 
-        <div class="load-more-wrap">
-          <button type="button" class="load-more-btn" id="loadMoreBtn">
-            Load more designs <i class="bi bi-arrow-down-circle"></i>
-          </button>
+        <!-- images load automatically when this comes into view -->
+        <div class="grid-sentinel" id="gridSentinel" aria-hidden="true">
+          <span class="sentinel-dot"></span>
+          <span class="sentinel-dot"></span>
+          <span class="sentinel-dot"></span>
         </div>
+        <p class="grid-end" id="gridEnd">You have seen every design in this collection.</p>
       </div>
     </main>
 
-    <!-- ============ LIGHTBOX ============ -->
-    <div class="lux-lightbox" id="luxLightbox" role="dialog" aria-modal="true" aria-label="Design preview">
-      <button class="lb-close" id="lbClose" aria-label="Close preview">&times;</button>
-      <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous design"><i class="bi bi-chevron-left"></i></button>
-      <button class="lb-nav lb-next" id="lbNext" aria-label="Next design"><i class="bi bi-chevron-right"></i></button>
-      <figure class="lb-stage">
-        <img id="lbImage" src="" alt="" />
-        <figcaption class="lb-caption">
-          <span class="lb-index" id="lbIndex"></span>
-          <span class="lb-text" id="lbText"></span>
-          <button type="button" class="lb-btn" id="lbEnquire">Get this design</button>
-        </figcaption>
-      </figure>
+    <!-- ============ VIEWER ============ -->
+    <div class="lux-viewer" id="luxViewer" role="dialog" aria-modal="true" aria-label="Design viewer">
+      <button class="vw-close" id="vwClose" aria-label="Close viewer">&times;</button>
+      <button class="vw-nav vw-prev" id="vwPrev" aria-label="Previous design"><i class="bi bi-chevron-left"></i></button>
+      <button class="vw-nav vw-next" id="vwNext" aria-label="Next design"><i class="bi bi-chevron-right"></i></button>
+
+      <div class="vw-inner">
+        <div class="vw-stage">
+          <img id="vwImage" src="" alt="" />
+        </div>
+
+        <div class="vw-side">
+          <div class="vw-thumbs" id="vwThumbs"></div>
+
+          <div class="vw-caption">
+            <span class="vw-index" id="vwIndex"></span>
+            <span class="vw-text" id="vwText"></span>
+            <button type="button" class="vw-btn" id="vwEnquire">Get this design</button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- ============ ENQUIRY POPUP (same fields + same Google Sheet) ============ -->
+    <!-- ============ ENQUIRY POPUP ============ -->
     <div class="enq-overlay" id="enqOverlay" role="dialog" aria-modal="true" aria-labelledby="enqTitle">
       <div class="enq-box">
         <button class="enq-close" id="enqClose" aria-label="Close form">&times;</button>
@@ -113,33 +121,27 @@
           <div class="form-group">
             <input type="text" name="name" class="luxury-input" placeholder="Your Name" required />
           </div>
-
           <div class="form-group">
             <input type="tel" name="phone" class="luxury-input" placeholder="Phone Number" required />
           </div>
-
           <div class="form-group">
             <select name="product" id="enqProduct" title="Products" class="luxury-input" required>
               <option value="" disabled selected>Select Product</option>
             </select>
           </div>
-
           <div class="form-group">
             <input type="text" name="size" class="luxury-input" placeholder="Size" required />
           </div>
-
           <div class="form-group">
             <textarea name="message" class="luxury-input luxury-textarea" rows="3" placeholder="Your Message"></textarea>
           </div>
-
           <div class="form-group">
             <label for="enqReference" class="label">Upload your reference <span class="opt">(optional)</span></label>
             <input type="file" name="reference" id="enqReference" class="luxury-input" accept="image/*,.pdf" />
           </div>
 
           <p class="enq-error" id="enqError"></p>
-
-          <button type="submit" class="btn btn-gold enq-submit" id="enqSubmit">Submit</button>
+          <button type="submit" class="enq-submit" id="enqSubmit">Submit</button>
         </form>
 
         <div class="enq-success" id="enqSuccess">
@@ -183,7 +185,7 @@
               </div>
             </div>
             <div class="footer-cta-row">
-              <a href="index.html#contactForm" class="footer-btn footer-btn-ghost">Get estimate</a>
+              <a href="#" class="footer-btn footer-btn-ghost" data-enquire>Get estimate</a>
               <a href="gallery.html" class="footer-btn footer-btn-gold">View Gallery</a>
             </div>
           </div>
